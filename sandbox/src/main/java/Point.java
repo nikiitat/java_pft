@@ -4,7 +4,7 @@
 public class Point {
     double a;
     double b;
-    double g = 2;
+
 
     public Point(double a, double b) {
         this.a = a;
@@ -12,6 +12,7 @@ public class Point {
     }
 
     public double distance(Point p) {
+        double g = 2;
         double f = (p.a - this.a);
         double s = (p.b - this.b);
         return Math.sqrt(Math.pow(f, g) + Math.pow(s, g));
