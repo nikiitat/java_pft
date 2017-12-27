@@ -18,11 +18,11 @@ public class GroupCreationTests {
         System.setProperty("webdriver.firefox.bin","/Applications/Firefox 2.app/Contents/MacOS/firefox-bin");
         wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        wd.get("http://localhost/addressbookv4.1.4/index.php");
     }
     
     @Test
-    public void GroupCreationTests() {
-        wd.get("http://localhost/addressbookv4.1.4/index.php");
+    public void testGroupCreation() {
         wd.findElement(By.linkText("groups")).click();
         wd.findElement(By.name("new")).click();
         wd.findElement(By.name("group_name")).click();
