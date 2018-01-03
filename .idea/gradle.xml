@@ -3,8 +3,31 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="$PROJECT_DIR$/sandbox/gradle/wrapper" />
+        <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/addressbook-web-test" />
+        <option name="gradleHome" value="$PROJECT_DIR$/sandbox/gradle/wrapper" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/addressbook-web-test" />
+          </set>
+        </option>
+        <option name="useAutoImport" value="true" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/sandbox" />
+        <option name="gradleHome" value="$PROJECT_DIR$/sandbox/gradle/wrapper" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/sandbox" />
