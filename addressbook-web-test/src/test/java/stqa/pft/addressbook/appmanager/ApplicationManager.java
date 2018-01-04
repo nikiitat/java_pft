@@ -15,6 +15,7 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
+    private HomePageHelper homePageHelper;
 
     public void init() {
         System.setProperty("webdriver.firefox.bin", "/Applications/Firefox 2.app/Contents/MacOS/firefox-bin");
@@ -25,6 +26,7 @@ public class ApplicationManager {
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
         contactHelper = new ContactHelper(wd);
+        homePageHelper = new HomePageHelper(wd);
         sessionHelper.login("admin", "secret");
     }
 
@@ -42,5 +44,9 @@ public class ApplicationManager {
 
     public ContactHelper getContactHelper() {
         return contactHelper;
+    }
+
+    public HomePageHelper getHomePageHelper() {
+        return homePageHelper;
     }
 }
