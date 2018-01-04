@@ -22,4 +22,16 @@ public class HomePageHelper extends HelperBase {
     public void confirmDeletion() {
         confirm();
     }
+
+    public void editContact() {
+        click(By.cssSelector("table [title=\"Edit\"]"));
+    }
+
+    public void updateContact() {
+        click(By.name("update"));
+    }
+
+    public void returnToHomePage() {
+        click(By.linkText("home page"));
+    }
 }
