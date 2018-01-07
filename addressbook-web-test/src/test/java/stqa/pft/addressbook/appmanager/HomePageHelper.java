@@ -1,13 +1,13 @@
 package stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebDriver;
 
 /**
  * Created by nikitatertytskyi on 03.01.18.
  */
 public class HomePageHelper extends HelperBase {
-    public HomePageHelper(FirefoxDriver wd) {
+    public HomePageHelper(WebDriver wd) {
         super(wd);
     }
 
