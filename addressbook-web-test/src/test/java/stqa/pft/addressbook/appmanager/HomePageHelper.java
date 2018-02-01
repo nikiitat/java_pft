@@ -11,8 +11,8 @@ public class HomePageHelper extends HelperBase {
         super(wd);
     }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void deleteSelectedContact() {
@@ -23,8 +23,8 @@ public class HomePageHelper extends HelperBase {
         confirm();
     }
 
-    public void editContact() {
-        click(By.cssSelector("table [title=\"Edit\"]"));
+    public void editContact(int index) {
+        wd.findElements(By.cssSelector("table [title=\"Edit\"]")).get(index).click();
     }
 
     public void updateContact() {
