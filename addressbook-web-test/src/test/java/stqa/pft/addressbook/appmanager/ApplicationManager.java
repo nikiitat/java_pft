@@ -58,11 +58,11 @@ public class ApplicationManager {
         return navigationHelper;
     }
 
-    public ContactHelper getContactHelper() {
+    public ContactHelper contact() {
         return contactHelper;
     }
 
-    public HomePageHelper getHomePageHelper() {
+    public HomePageHelper home() {
         return homePageHelper;
     }
 }

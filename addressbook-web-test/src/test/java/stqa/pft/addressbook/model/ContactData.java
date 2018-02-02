@@ -1,36 +1,47 @@
 package stqa.pft.addressbook.model;
 
 public class ContactData {
-    private final String firstName;
-    private final String lastName;
-    private int id;
-    private final String company;
-    private final String homePhone;
-    private final String email;
+    private String firstName;
+    private String lastName;
+    private int id = Integer.MAX_VALUE;
+    private String company;
+    private String homePhone;
+    private String email;
     private String group;
 
-    public ContactData(String firstName, String lastName, int id, String company, String homePhone, String email, String group) {
+    public ContactData withFirstName(String firstName) {
         this.firstName = firstName;
-        this.lastName = lastName;
-        this.id = id;
-        this.company = company;
-        this.homePhone = homePhone;
-        this.email = email;
-        this.group = group;
+        return this;
     }
 
-    public ContactData(String firstName, String lastName, String company, String homePhone, String email, String group) {
-        this.firstName = firstName;
+    public ContactData withLastName(String lastName) {
         this.lastName = lastName;
-        this.id = Integer.MAX_VALUE;
-        this.company = company;
-        this.homePhone = homePhone;
-        this.email = email;
-        this.group = group;
+        return this;
     }
 
-    public void setId(int id) {
+    public ContactData withCompany(String company) {
+        this.company = company;
+        return this;
+    }
+
+    public ContactData withHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
+    }
+
+    public ContactData withId(int id) {
         this.id = id;
+        return this;
     }
 
     public int getId() {
@@ -77,6 +88,7 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
+        if (id != that.id) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
         return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
     }
@@ -85,6 +97,7 @@ public class ContactData {
     public int hashCode() {
         int result = firstName != null ? firstName.hashCode() : 0;
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + id;
         return result;
     }
 }
