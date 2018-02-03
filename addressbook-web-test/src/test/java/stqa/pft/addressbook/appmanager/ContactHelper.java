@@ -71,11 +71,11 @@ public class ContactHelper extends HelperBase {
         for (int i = 1; i < elements.size(); i++) {
             String lastName = elements.get(i).findElement(By.cssSelector("td:nth-child(2)")).getText();
             String name = elements.get(i).findElement(By.cssSelector("td:nth-child(3)")).getText();
-            String[] phones = elements.get(i).findElement(By.cssSelector("td:nth-child(6)")).getText().split("\n");
+            String allPhones = elements.get(i).findElement(By.cssSelector("td:nth-child(6)")).getText();
             int id = Integer.parseInt(elements.get(i).findElement(By.tagName("input")).getAttribute("value"));
             ContactData contact = new ContactData().withFirstName(name).withLastName(lastName)
                     .withId(id).withCompany(null).withGroup(null).withEmail(null)
-                    .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]);
+                    .withAllPhones(allPhones);
             contacts.add(contact);
         }
         return contacts;
