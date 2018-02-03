@@ -31,15 +31,11 @@ public class ContactEmailTests extends TestBase {
         app.home().editContactById(contact.getId());
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-        assertThat(cleaned(contact.getAllEmails()), equalTo(cleaned(mergeEmails(contactInfoFromEditForm))));
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
     }
 
     private String mergeEmails(ContactData contact) {
         return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
                 .stream().filter((s) -> !s.equals("")).collect(Collectors.joining("\n"));
-    }
-
-    public static String cleaned(String phone) {
-        return phone.replaceAll("\\s", "");
     }
 }
