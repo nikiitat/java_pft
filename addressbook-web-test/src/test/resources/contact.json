@@ -1,0 +1,26 @@
+[
+  {
+    "firstName": "test 0",
+    "lastName": "test 0",
+    "homePhone": "+1034567890",
+    "email": "test0@test.com"
+  },
+  {
+    "firstName": "test 1",
+    "lastName": "test 1",
+    "homePhone": "+1134567890",
+    "email": "test1@test.com"
+  },
+  {
+    "firstName": "test 2",
+    "lastName": "test 2",
+    "homePhone": "+1234567890",
+    "email": "test2@test.com"
+  },
+  {
+    "firstName": "test 3",
+    "lastName": "test 3",
+    "homePhone": "+1334567890",
+    "email": "test3@test.com"
+  }
+]
