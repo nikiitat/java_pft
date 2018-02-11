@@ -11,6 +11,8 @@ dependencies{
     compile 'com.beust:jcommander:1.72'
     compile 'com.thoughtworks.xstream:xstream:1.4.8'
     compile 'com.google.code.gson:gson:2.8.2'
+    compile 'ch.qos.logback:logback-classic:1.1.5'
+//    compile group: 'log4j', name: 'log4j', version:'1.2.17'
 }
 
 task testGroups (type : Test) {
@@ -19,10 +21,10 @@ task testGroups (type : Test) {
         suites 'src/test/resources/testng-groups.xml'
     }
     if (projects.hasProperty("browser")){
-        systemProperty 'browser', "$browser"
+        systemProperty 'browser', "${browser}"
     }
     if (projects.hasProperty("target")){
-        systemProperty 'target', "$target"
+        systemProperty 'target', "${target}"
     }
 }
 task testContacts (type : Test) {
@@ -31,9 +33,9 @@ task testContacts (type : Test) {
         suites 'src/test/resources/testng-contacts.xml'
     }
     if (projects.hasProperty("browser")){
-        systemProperty 'browser', "$browser"
+        systemProperty 'browser', "${browser}"
     }
     if (projects.hasProperty("target")){
-        systemProperty 'target', "$target"
+        systemProperty 'target', "${target}"
     }
 }
