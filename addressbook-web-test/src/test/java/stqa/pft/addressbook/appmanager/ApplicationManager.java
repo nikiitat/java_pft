@@ -37,7 +37,7 @@ public class ApplicationManager {
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
         if (browser.equals(BrowserType.FIREFOX)) {
-            System.setProperty("webdriver.firefox.bin", "/Applications/Firefox 2.app/Contents/MacOS/firefox-bin");
+            System.setProperty(properties.getProperty("driver.firefox"), properties.getProperty("firefox2"));
             wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
         } else if (browser.equals(BrowserType.CHROME)) {
             wd = new ChromeDriver();
