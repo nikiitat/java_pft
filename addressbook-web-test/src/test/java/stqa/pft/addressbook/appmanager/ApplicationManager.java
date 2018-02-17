@@ -26,6 +26,7 @@ public class ApplicationManager {
     private ContactHelper contactHelper;
     private HomePageHelper homePageHelper;
     private String browser;
+    private DbHelper dbHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -35,6 +36,8 @@ public class ApplicationManager {
     public void init() throws IOException {
         String target = System.getProperty("targer", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
+        dbHelper = new DbHelper();
 
         if (browser.equals(BrowserType.FIREFOX)) {
             System.setProperty(properties.getProperty("driver.firefox"), properties.getProperty("firefox2"));
@@ -73,5 +76,9 @@ public class ApplicationManager {
 
     public HomePageHelper home() {
         return homePageHelper;
+    }
+
+    public DbHelper db() {
+        return dbHelper;
     }
 }
