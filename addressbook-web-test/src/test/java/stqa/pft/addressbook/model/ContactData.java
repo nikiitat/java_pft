@@ -36,7 +36,8 @@ public class ContactData {
     private String allPhones;
 
     @Expose
-    @Transient
+    @Column(name = "email")
+    @Type(type = "text")
     private String email;
     @Transient
     private String email2;
@@ -194,7 +195,9 @@ public class ContactData {
         return "ContactData{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", id='" + id + '\'' +
+                ", id=" + id +
+                ", homePhone='" + homePhone + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 
@@ -207,7 +210,9 @@ public class ContactData {
 
         if (id != that.id) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-        return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
+        if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+        if (homePhone != null ? !homePhone.equals(that.homePhone) : that.homePhone != null) return false;
+        return email != null ? email.equals(that.email) : that.email == null;
     }
 
     @Override
@@ -215,6 +220,8 @@ public class ContactData {
         int result = firstName != null ? firstName.hashCode() : 0;
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + id;
+        result = 31 * result + (homePhone != null ? homePhone.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
     }
 }

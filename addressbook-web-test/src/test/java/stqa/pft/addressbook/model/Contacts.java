@@ -10,6 +10,7 @@ import java.util.Set;
  * Created by nikitatertytskyi on 02.02.2018.
  */
 public class Contacts extends ForwardingSet<ContactData> {
+
     private Set<ContactData> delegate;
 
     public Contacts(Contacts contacts) {
