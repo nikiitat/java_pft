@@ -8,9 +8,15 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import stqa.pft.addressbook.appmanager.ApplicationManager;
+import stqa.pft.addressbook.model.GroupData;
+import stqa.pft.addressbook.model.Groups;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by nikitatertytskyi on 28.12.17.
@@ -39,6 +45,16 @@ public class TestBase {
     @AfterSuite(alwaysRun = true)
     public void tearDown() {
         app.stop();
+    }
+
+    public void verifyGroupLlistUI() {
+        if (Boolean.getBoolean("verifyUI")) {
+            Groups dbGroups = app.db().groups();
+            Groups uiGroups = app.group().all();
+            assertThat(uiGroups, equalTo(dbGroups
+                    .stream().map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
+                    .collect(Collectors.toSet())));
+        }
     }
 
 }
