@@ -5,6 +5,9 @@ import org.testng.annotations.Test;
 import stqa.pft.addressbook.model.ContactData;
 import stqa.pft.addressbook.model.GroupData;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Created by nikitatertytskyi on 18.02.2018.
  */
@@ -28,5 +31,9 @@ public class AddContactToGroupTests extends TestBase {
         ContactData contact = app.db().contatcs().iterator().next();
         GroupData group = app.db().groups().iterator().next();
         app.home().addContactToGroup(contact, group);
+
+        int id = contact.getId();
+//        ContactData collect = app.db().contatcs().stream().map((c) -> new ContactData().withId(id));
+        assertThat(contact.getGroups().iterator().next().getName(), equalTo(group.getName()));
     }
 }
