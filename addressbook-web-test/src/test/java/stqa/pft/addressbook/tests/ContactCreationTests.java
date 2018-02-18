@@ -30,19 +30,20 @@ public class ContactCreationTests extends TestBase {
             line = reader.readLine();
         }
         Gson gson = new Gson();
-        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>() {}.getType());
+        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>() {
+        }.getType());
         return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
     }
 
     @Test(dataProvider = "validContactsFromJson")
     public void testContactCreation(ContactData contactData) {
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contatcs();
         File photo = new File("src/test/resources/dog.png");
         contactData.withPhoto(photo);
         app.contact().create(contactData, false);
-        Contacts after = app.contact().all();
 
-        assertThat(after.size(), equalTo(before.size() + 1));
+        assertThat(app.contact().getContactCount(), equalTo(before.size() + 1));
+        Contacts after = app.db().contatcs();
         assertThat(after, equalTo(
                 before.withAdded(contactData.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
     }

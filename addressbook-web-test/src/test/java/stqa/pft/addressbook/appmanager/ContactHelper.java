@@ -33,7 +33,10 @@ public class ContactHelper extends HelperBase {
     public void fillNewContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("lastname"), contactData.getLastName());
-        attach(By.name("photo"), contactData.getPhoto());
+        try {
+            attach(By.name("photo"), contactData.getPhoto());
+        } catch (NullPointerException ex) {
+        }
         type(By.name("company"), contactData.getCompany());
         type(By.name("home"), contactData.getHomePhone());
         type(By.name("email"), contactData.getEmail());
@@ -101,5 +104,9 @@ public class ContactHelper extends HelperBase {
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
                 .withEmail(email).withEmail2(email2).withEmail3(email3)
                 .withAddress(address);
+    }
+
+    public int getContactCount() {
+        return wd.findElements(By.name("entry")).size();
     }
 }
