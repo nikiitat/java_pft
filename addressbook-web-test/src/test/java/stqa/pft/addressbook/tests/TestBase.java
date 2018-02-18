@@ -48,7 +48,7 @@ public class TestBase {
     }
 
     public void verifyGroupLlistUI() {
-        if (Boolean.getBoolean("verifyUI")){
+        if (Boolean.getBoolean("verifyUI")) {
             Groups dbGroups = app.db().groups();
             Groups uiGroups = app.group().all();
             assertThat(uiGroups, equalTo(dbGroups
