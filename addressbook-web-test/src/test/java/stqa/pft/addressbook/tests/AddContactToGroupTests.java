@@ -3,10 +3,8 @@ package stqa.pft.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import stqa.pft.addressbook.model.ContactData;
+import stqa.pft.addressbook.model.Contacts;
 import stqa.pft.addressbook.model.GroupData;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by nikitatertytskyi on 18.02.2018.
@@ -28,12 +26,21 @@ public class AddContactToGroupTests extends TestBase {
     @Test
     public void testAddContactToGroup() {
         app.goTo().homePage();
-        ContactData contact = app.db().contatcs().iterator().next();
+//        Contacts contact = app.db().contatcs();
+//        contact.iterator().next().getGroups().iterator().next().getName();
+        Contacts before = app.db().contatcs();
+        ContactData modifiedContact = before.iterator().next();
         GroupData group = app.db().groups().iterator().next();
-        app.home().addContactToGroup(contact, group);
+//        app.home().addContactToGroup(contact, group);
 
-        int id = contact.getId();
-//        ContactData collect = app.db().contatcs().stream().map((c) -> new ContactData().withId(id));
-        assertThat(contact.getGroups().iterator().next().getName(), equalTo(group.getName()));
+//        ContactData f = app.db().contatcs().stream().filter((c) -> Objects.equals(c, contact)).findFirst().get();
+//        f.getGroups().iterator().next().getName();
+//        assertThat(group.getName(), equalTo(app.db().contatcs()
+//                .stream().filter((c) -> Objects.equals(c, contact))
+//                .findFirst()
+//                .get()
+//                .getGroups().iterator().next().getName()));
+
+
     }
 }
