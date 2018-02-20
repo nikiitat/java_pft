@@ -13,7 +13,7 @@ public class AddContactToGroupTests extends TestBase {
     @BeforeMethod
     public void checkIfContactAndGroupExist() {
         app.goTo().homePage();
-        if (app.db().contatcs().size() == 0) {
+        if (app.db().contacts().size() == 0) {
             app.contact().create(new ContactData().withFirstName("TestNew").withLastName("TestNew").withCompany("book")
                     .withHomePhone("+123456789").withEmail("test@test.com").inGroup(null), false);
         }
@@ -26,16 +26,17 @@ public class AddContactToGroupTests extends TestBase {
     @Test
     public void testAddContactToGroup() {
         app.goTo().homePage();
-//        Contacts contact = app.db().contatcs();
+//        Contacts contact = app.db().contacts();
 //        contact.iterator().next().getGroups().iterator().next().getName();
-        Contacts before = app.db().contatcs();
-        ContactData modifiedContact = before.iterator().next();
+        Contacts result = app.db().contacts();
+        String s = result.iterator().next().getGroups().iterator().next().getName();
+//        ContactData modifiedContact = before.iterator().next();
         GroupData group = app.db().groups().iterator().next();
 //        app.home().addContactToGroup(contact, group);
 
-//        ContactData f = app.db().contatcs().stream().filter((c) -> Objects.equals(c, contact)).findFirst().get();
+//        ContactData f = app.db().contacts().stream().filter((c) -> Objects.equals(c, contact)).findFirst().get();
 //        f.getGroups().iterator().next().getName();
-//        assertThat(group.getName(), equalTo(app.db().contatcs()
+//        assertThat(group.getName(), equalTo(app.db().contacts()
 //                .stream().filter((c) -> Objects.equals(c, contact))
 //                .findFirst()
 //                .get()
