@@ -26,11 +26,7 @@ public class AddContactToGroupTests extends TestBase {
     @Test
     public void testAddContactToGroup() {
         app.goTo().homePage();
-//        Contacts contact = app.db().contacts();
-//        contact.iterator().next().getGroups().iterator().next().getName();
-        Contacts result = app.db().contacts();
-        String s = result.iterator().next().getGroups().iterator().next().getName();
-//        ContactData modifiedContact = before.iterator().next();
+        Contacts contact = app.db().contacts();
         GroupData group = app.db().groups().iterator().next();
 //        app.home().addContactToGroup(contact, group);
 
