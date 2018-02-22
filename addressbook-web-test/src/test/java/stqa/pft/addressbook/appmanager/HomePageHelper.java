@@ -23,12 +23,28 @@ public class HomePageHelper extends HelperBase {
 
     public void addContactToGroupById(int contactId, int groupId) {
         selectContactById(contactId);
-        selectGroup(groupId);
+        selectGroupTo(groupId);
         addToGroup();
     }
 
+    public void removeContactFromGroupById(int contactId, int groupId) {
+        selectGroup(groupId);
+        selectContactById(contactId);
+        removeFromGroup();
+        returnToHomePage();
+    }
+
+    private void removeFromGroup() {
+        click(By.name("remove"));
+    }
+
+    private void selectGroup(int groupId) {
+        new Select(wd.findElement(By.name("group")))
+                .selectByValue(String.valueOf(groupId));
+    }
+
     public void selectContactById(int id) {
-        wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
+        click(By.cssSelector("input[id='" + id + "']"));
     }
 
     public void deleteSelectedContact() {
@@ -40,14 +56,14 @@ public class HomePageHelper extends HelperBase {
     }
 
     public void editContactById(int id) {
-        wd.findElement(By.cssSelector("a[href*='edit.php?id=" + id + "']")).click();
+        click(By.cssSelector("a[href*='edit.php?id=" + id + "']"));
     }
 
     public void returnToHomePage() {
         click(By.linkText("home"));
     }
 
-    public void selectGroup(int groupId) {
+    public void selectGroupTo(int groupId) {
         new Select(wd.findElement(By.name("to_group")))
                 .selectByValue(String.valueOf(groupId));
     }

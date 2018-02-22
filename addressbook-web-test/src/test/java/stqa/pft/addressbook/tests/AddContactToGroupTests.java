@@ -42,17 +42,14 @@ public class AddContactToGroupTests extends TestBase {
     private static int[] getUnusedGroupIdAlongWithContact() {
         Contacts contacts = app.db().contacts();
         Groups groups = app.db().groups();
-        int myGroup = 0;
 
         for (ContactData c : contacts) {
             for (GroupData d : groups) {
                 try {
                     if (c.getGroups().stream().noneMatch((s) -> s.getId() == d.getId())) {
-                        myGroup = d.getId();
-                        return new int[]{myGroup, c.getId()};
+                        return new int[]{d.getId(), c.getId()};
                     }
-                } catch (NoSuchElementException ex) {
-                }
+                } catch (NoSuchElementException ex) {}
             }
         }
         app.goTo().groupPage();
