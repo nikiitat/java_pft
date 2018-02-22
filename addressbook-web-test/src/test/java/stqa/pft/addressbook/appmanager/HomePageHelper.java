@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import stqa.pft.addressbook.model.ContactData;
-import stqa.pft.addressbook.model.GroupData;
 
 /**
  * Created by nikitatertytskyi on 03.01.18.
@@ -20,6 +19,12 @@ public class HomePageHelper extends HelperBase {
         deleteSelectedContact();
         confirmDeletion();
         returnToHomePage();
+    }
+
+    public void addContactToGroupById(int contactId, int groupId) {
+        selectContactById(contactId);
+        selectGroup(groupId);
+        addToGroup();
     }
 
     public void selectContactById(int id) {
@@ -42,18 +47,12 @@ public class HomePageHelper extends HelperBase {
         click(By.linkText("home"));
     }
 
-    public void selectGroup(GroupData group) {
+    public void selectGroup(int groupId) {
         new Select(wd.findElement(By.name("to_group")))
-                .selectByVisibleText(group.getName());
+                .selectByValue(String.valueOf(groupId));
     }
 
     public void addToGroup() {
         click(By.name("add"));
-    }
-
-    public void addContactToGroup(ContactData contact, GroupData group) {
-        selectContactById(contact.getId());
-        selectGroup(group);
-        addToGroup();
     }
 }
