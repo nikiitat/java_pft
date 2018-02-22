@@ -2,6 +2,7 @@ package stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 import stqa.pft.addressbook.model.ContactData;
 
 /**
@@ -20,8 +21,30 @@ public class HomePageHelper extends HelperBase {
         returnToHomePage();
     }
 
-    private void selectContactById(int id) {
-        wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
+    public void addContactToGroupById(int contactId, int groupId) {
+        selectContactById(contactId);
+        selectGroupTo(groupId);
+        addToGroup();
+    }
+
+    public void removeContactFromGroupById(int contactId, int groupId) {
+        selectGroup(groupId);
+        selectContactById(contactId);
+        removeFromGroup();
+        returnToHomePage();
+    }
+
+    private void removeFromGroup() {
+        click(By.name("remove"));
+    }
+
+    private void selectGroup(int groupId) {
+        new Select(wd.findElement(By.name("group")))
+                .selectByValue(String.valueOf(groupId));
+    }
+
+    public void selectContactById(int id) {
+        click(By.cssSelector("input[id='" + id + "']"));
     }
 
     public void deleteSelectedContact() {
@@ -33,10 +56,19 @@ public class HomePageHelper extends HelperBase {
     }
 
     public void editContactById(int id) {
-        wd.findElement(By.cssSelector("a[href*='edit.php?id=" + id + "']")).click();
+        click(By.cssSelector("a[href*='edit.php?id=" + id + "']"));
     }
 
     public void returnToHomePage() {
         click(By.linkText("home"));
+    }
+
+    public void selectGroupTo(int groupId) {
+        new Select(wd.findElement(By.name("to_group")))
+                .selectByValue(String.valueOf(groupId));
+    }
+
+    public void addToGroup() {
+        click(By.name("add"));
     }
 }

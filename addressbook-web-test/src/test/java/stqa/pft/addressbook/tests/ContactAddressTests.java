@@ -14,7 +14,7 @@ public class ContactAddressTests extends TestBase {
     @BeforeMethod
     public void ensureContactExist() {
         app.goTo().homePage();
-        if (app.db().contatcs().size() == 0) {
+        if (app.db().contacts().size() == 0) {
             app.contact().create(new ContactData().withFirstName("Phone").withLastName("Guy")
                     .withAddress("asdas"), false);
         }
