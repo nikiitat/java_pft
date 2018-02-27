@@ -32,10 +32,13 @@ public class AddContactToGroupTests extends TestBase {
     public void testAddContactToGroup() {
         app.goTo().homePage();
         int[] Ids = getUnusedGroupIdAlongWithContact();
+        Assert.assertFalse(app.db().contacts().stream().filter((c) -> c.getId() == Ids[1]).findFirst().get()
+                        .getGroups().stream().anyMatch((s) -> s.getId() == Ids[0]),
+                String.format("Contact with Id: %s has group with Id: %s", Ids[1], Ids[0]));
         app.home().addContactToGroupById(Ids[1], Ids[0]);
 
         Assert.assertTrue(app.db().contacts().stream().filter((c) -> c.getId() == Ids[1]).findFirst().get()
-                        .getGroups().stream().filter((s) -> s.getId() == Ids[0]).findFirst().isPresent(),
+                        .getGroups().stream().anyMatch((s) -> s.getId() == Ids[0]),
                 String.format("Contact with Id: %s does not have group with Id: %s", Ids[1], Ids[0]));
     }
 
@@ -49,7 +52,8 @@ public class AddContactToGroupTests extends TestBase {
                     if (c.getGroups().stream().noneMatch((s) -> s.getId() == d.getId())) {
                         return new int[]{d.getId(), c.getId()};
                     }
-                } catch (NoSuchElementException ex) {}
+                } catch (NoSuchElementException ex) {
+                }
             }
         }
         app.goTo().groupPage();

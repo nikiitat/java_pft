@@ -31,10 +31,13 @@ public class DeleteContactFromGroupTest extends TestBase {
     public void testDeleteContactFromGroup() {
         app.goTo().homePage();
         int[] Ids = getContactWithGroup();
+        Assert.assertTrue(app.db().contacts().stream().filter((c) -> c.getId() == Ids[0]).findFirst().get()
+                        .getGroups().stream().anyMatch((s) -> s.getId() == Ids[1]),
+                String.format("Contact with Id: %s does not have a group with Id: %s", Ids[0], Ids[1]));
         app.home().removeContactFromGroupById(Ids[0], Ids[1]);
 
         Assert.assertFalse(app.db().contacts().stream().filter((c) -> c.getId() == Ids[0]).findFirst().get()
-                        .getGroups().stream().filter((s) -> s.getId() == Ids[1]).findFirst().isPresent(),
+                        .getGroups().stream().anyMatch((s) -> s.getId() == Ids[1]),
                 String.format("Contact with Id: %s has group with Id: %s", Ids[0], Ids[1]));
     }
 
