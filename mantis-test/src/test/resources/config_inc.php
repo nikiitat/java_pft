@@ -1,4 +1,6 @@
 <?php
+$g_allow_signup	 = ON;
+$g_enable_email_notification = ON;
 $g_hostname = 'localhost';
 $g_db_type = 'mysql';
 $g_database_name = 'bugtracker';
