@@ -10,13 +10,10 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
 
-import static org.testng.Assert.assertTrue;
-
 /**
- * Created by nikitatertytskyi on 26.02.2018.
+ * Created by nikitatertytskyi on 01.03.2018.
  */
-public class RegistrationTests extends TestBase {
-
+public class ResetPasswordTests extends TestBase {
     @BeforeMethod
     public void startMailServer() {
         app.mailHelper().start();
@@ -24,17 +21,19 @@ public class RegistrationTests extends TestBase {
 
     @Test
     public void testRegistration() throws IOException, MessagingException {
-        long now = System.currentTimeMillis();
-        String email = String.format("test%s@localhost", now);
-        String user = String.format("test%s", now);
-        String password = "password";
+//        long now = System.currentTimeMillis();
+//        String email = String.format("test%s@localhost", now);
+        String user = "administrator";
+        String password = "root";
 //        app.jamesHelper().createUser(user, password);
-        app.registration().start(user, email);
-        List<MailMessage> mailMessages = app.mailHelper().waitForMail(2, 10000);
-//        List<MailMessage> mailMessages = app.jamesHelper().waitForMail(user,password, 60000);
-        String confirmationLink = findConfirmationLink(mailMessages, email);
-        app.registration().finish(confirmationLink, password);
-        assertTrue(app.newSession().login(user, password));
+        app.loginHelper().login(user, password);
+        app.loginHelper().openManageUsers();
+        app.loginHelper().selectUser(user);
+//        List<MailMessage> mailMessages = app.mailHelper().waitForMail(2, 10000);
+////        List<MailMessage> mailMessages = app.jamesHelper().waitForMail(user,password, 60000);
+//        String confirmationLink = findConfirmationLink(mailMessages, email);
+//        app.registration().finish(confirmationLink, password);
+//        assertTrue(app.newSession().login(user, password));
     }
 
     private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
