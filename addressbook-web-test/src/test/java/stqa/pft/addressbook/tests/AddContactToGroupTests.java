@@ -10,6 +10,9 @@ import stqa.pft.addressbook.model.Groups;
 
 import java.util.NoSuchElementException;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Created by nikitatertytskyi on 18.02.2018.
  */
@@ -32,6 +35,9 @@ public class AddContactToGroupTests extends TestBase {
     public void testAddContactToGroup() {
         app.goTo().homePage();
         int[] Ids = getUnusedGroupIdAlongWithContact();
+        Groups before = app.db().contacts().stream().filter((c) -> c.getId() == Ids[1]).findFirst().get()
+                .getGroups();
+
         Assert.assertFalse(app.db().contacts().stream().filter((c) -> c.getId() == Ids[1]).findFirst().get()
                         .getGroups().stream().anyMatch((s) -> s.getId() == Ids[0]),
                 String.format("Contact with Id: %s has group with Id: %s", Ids[1], Ids[0]));
@@ -40,6 +46,11 @@ public class AddContactToGroupTests extends TestBase {
         Assert.assertTrue(app.db().contacts().stream().filter((c) -> c.getId() == Ids[1]).findFirst().get()
                         .getGroups().stream().anyMatch((s) -> s.getId() == Ids[0]),
                 String.format("Contact with Id: %s does not have group with Id: %s", Ids[1], Ids[0]));
+
+        Groups after = app.db().contacts().stream().filter((c) -> c.getId() == Ids[1]).findFirst().get().getGroups();
+        assertThat(after, equalTo(
+                before.withAdded(app.db().groups().stream().filter((g) -> g.getId() == Ids[0]).findFirst().get())));
+
     }
 
     private static int[] getUnusedGroupIdAlongWithContact() {
