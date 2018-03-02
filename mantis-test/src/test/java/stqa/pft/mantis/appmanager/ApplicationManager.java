@@ -26,6 +26,7 @@ public class ApplicationManager {
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
     private LoginHelper loginHelper;
+    private DbMantisHelper dbMantisHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -65,25 +66,32 @@ public class ApplicationManager {
         return loginHelper;
     }
 
-    public FtpHelper ftpHelper(){
-        if (ftpHelper == null){
+    public FtpHelper ftpHelper() {
+        if (ftpHelper == null) {
             ftpHelper = new FtpHelper(this);
         }
         return ftpHelper;
     }
 
-    public MailHelper mailHelper(){
-        if (mailHelper == null){
+    public MailHelper mailHelper() {
+        if (mailHelper == null) {
             mailHelper = new MailHelper(this);
         }
         return mailHelper;
     }
 
-    public JamesHelper jamesHelper(){
-        if (jamesHelper == null){
+    public JamesHelper jamesHelper() {
+        if (jamesHelper == null) {
             jamesHelper = new JamesHelper(this);
         }
         return jamesHelper;
+    }
+
+    public DbMantisHelper dbMantisHelper() {
+        if (dbMantisHelper == null) {
+            dbMantisHelper = new DbMantisHelper(this);
+        }
+        return dbMantisHelper;
     }
 
     public WebDriver getDriver() {

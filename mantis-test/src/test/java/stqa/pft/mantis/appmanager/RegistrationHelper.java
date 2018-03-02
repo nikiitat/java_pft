@@ -1,6 +1,7 @@
 package stqa.pft.mantis.appmanager;
 
 import org.openqa.selenium.By;
+import stqa.pft.mantis.model.UserData;
 
 /**
  * Created by nikitatertytskyi on 26.02.2018.
@@ -11,10 +12,10 @@ public class RegistrationHelper extends HelperBase {
         super(app);
     }
 
-    public void start(String userName, String email) {
+    public void start(UserData userData) {
         wd.get(app.getProperty("web.baseUrl") + "/signup_page.php");
-        type(By.name("username"), userName);
-        type(By.name("email"), email);
+        type(By.name("username"), userData.getUserName());
+        type(By.name("email"), userData.getEmail());
         click(By.cssSelector("input[value='Signup']"));
     }
 

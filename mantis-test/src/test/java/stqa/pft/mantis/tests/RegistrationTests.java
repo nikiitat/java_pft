@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import stqa.pft.mantis.model.MailMessage;
+import stqa.pft.mantis.model.UserData;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class RegistrationTests extends TestBase {
         String user = String.format("test%s", now);
         String password = "password";
 //        app.jamesHelper().createUser(user, password);
-        app.registration().start(user, email);
+        app.registration().start(new UserData().withUserName(user).withEmail(email));
         List<MailMessage> mailMessages = app.mailHelper().waitForMail(2, 10000);
 //        List<MailMessage> mailMessages = app.jamesHelper().waitForMail(user,password, 60000);
         String confirmationLink = findConfirmationLink(mailMessages, email);

@@ -62,4 +62,13 @@ public class HelperBase {
             return false;
         }
     }
+
+    protected boolean isElementPresent(String text) {
+        try {
+            wd.findElement(By.cssSelector(text));
+            return true;
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+    }
 }

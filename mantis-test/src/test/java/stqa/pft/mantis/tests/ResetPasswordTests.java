@@ -5,10 +5,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import stqa.pft.mantis.model.MailMessage;
+import stqa.pft.mantis.model.UserData;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
+
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by nikitatertytskyi on 01.03.2018.
@@ -20,20 +23,18 @@ public class ResetPasswordTests extends TestBase {
     }
 
     @Test
-    public void testRegistration() throws IOException, MessagingException {
-//        long now = System.currentTimeMillis();
-//        String email = String.format("test%s@localhost", now);
-        String user = "administrator";
-        String password = "root";
-//        app.jamesHelper().createUser(user, password);
-        app.loginHelper().login(user, password);
-        app.loginHelper().openManageUsers();
-        app.loginHelper().selectUser(user);
-//        List<MailMessage> mailMessages = app.mailHelper().waitForMail(2, 10000);
-////        List<MailMessage> mailMessages = app.jamesHelper().waitForMail(user,password, 60000);
-//        String confirmationLink = findConfirmationLink(mailMessages, email);
-//        app.registration().finish(confirmationLink, password);
-//        assertTrue(app.newSession().login(user, password));
+    public void testResetPasswordForUser() throws IOException, MessagingException {
+        UserData user = app.dbMantisHelper().users().stream().filter((u) -> 1 != u.getId()).findAny()
+                .orElseThrow(() -> new AssertionError("User not found, please create one!"));
+        String admin = "administrator";
+        String adminPassword = "root";
+        String password = "Test123";
+        app.loginHelper().loginAsAdmin(admin, adminPassword);
+        app.loginHelper().resetUserPassword(user);
+        List<MailMessage> mailMessages = app.mailHelper().waitForMail(1, 10000);
+        String resetLink = findConfirmationLink(mailMessages, user.getEmail());
+        app.registration().finish(resetLink, password);
+        assertTrue(app.newSession().login(user.getUserName(), password));
     }
 
     private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
