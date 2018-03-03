@@ -1,5 +1,8 @@
 package stqa.pft.sandbox;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MyFirstProgram {
 
     public static void main(String[] args) {
@@ -7,10 +10,12 @@ public class MyFirstProgram {
 
         Point p1 = new Point(1, 3);
         Point p2 = new Point(4, 2);
-        System.out.println("Calling a func: Distance between p1 and p2 = " + distance(p1, p2));
-        System.out.println("Calling a method: Distance between p1 and p2 =  " + p1.distance(p2));
-        System.out.println("Calling a method: Distance between p2 and p1 =  " + p2.distance(p1));
+
+        List<String> sttttt = Arrays.asList("1", "2", "3", "4");
+
+//        System.out.println(sttttt.stream().);
     }
+
 
     public static double distance(Point p1, Point p2) {
         double g = 2;
