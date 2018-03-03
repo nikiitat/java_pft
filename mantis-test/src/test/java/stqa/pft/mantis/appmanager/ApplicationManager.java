@@ -27,6 +27,7 @@ public class ApplicationManager {
     private JamesHelper jamesHelper;
     private LoginHelper loginHelper;
     private DbMantisHelper dbMantisHelper;
+    private SoapHelper soapHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -92,6 +93,13 @@ public class ApplicationManager {
             dbMantisHelper = new DbMantisHelper(this);
         }
         return dbMantisHelper;
+    }
+
+    public SoapHelper soapHelper() {
+        if (soapHelper == null) {
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
     }
 
     public WebDriver getDriver() {
