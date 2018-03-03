@@ -32,4 +32,10 @@ public class SoapTests extends TestBase {
         Issue created = app.soapHelper().addIssue(issue);
         Assert.assertEquals(issue.getSummary(), created.getSummary());
     }
+
+    @Test
+    public void testIssue() throws Exception {
+        skipIfNotFixed(2);
+        System.out.println(app.soapHelper().getIssueStatusById(1));
+    }
 }
