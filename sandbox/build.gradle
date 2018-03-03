@@ -9,3 +9,8 @@ repositories{
 dependencies{
     compile 'org.testng:testng:6.13.1'
 }
+
+test{
+    test.outputs.upToDateWhen {false}
+    useTestNG()
+}
