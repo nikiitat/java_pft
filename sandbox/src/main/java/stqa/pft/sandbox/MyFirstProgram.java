@@ -12,6 +12,11 @@ public class MyFirstProgram {
         System.out.println(String
                 .format("Let's find the sum of 2 numbers from a given set %s that is closest to %s", Arrays.toString(numbers), a));
 
+        ArrayList<ArrayList<Integer>> matrix = fillMatrix();
+        findSum(matrix, a);
+    }
+
+    private static ArrayList<ArrayList<Integer>> fillMatrix() {
         ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>();
         for (int i = 0; i < numbers.length; i++) {
             for (int j = 1; j < numbers.length; j++) {
@@ -21,7 +26,7 @@ public class MyFirstProgram {
             }
         }
         System.out.println("Full matrix" + matrix.toString());
-        findSum(matrix, a);
+        return matrix;
     }
 
     private static List<Integer> findSum(ArrayList<ArrayList<Integer>> matrix, int a) {
@@ -53,19 +58,5 @@ public class MyFirstProgram {
                     .format("Sum of %s and %s equal %s", collect.get(0).get(1), collect.get(0).get(2), collect.get(0).get(0)));
             return collect.get(0);
         }
-
     }
-
-    public static double distance(Point p1, Point p2) {
-        //        Point p1 = new Point(1, 3);
-//        Point p2 = new Point(4, 2);
-//        System.out.println("Calling a func: Distance between p1 and p2 = " + distance(p1, p2));
-//        System.out.println("Calling a method: Distance between p1 and p2 =  " + p1.distance(p2));
-//        System.out.println("Calling a method: Distance between p2 and p1 =  " + p2.distance(p1));
-        double g = 2;
-        double f = (p2.a - p1.a);
-        double s = (p2.b - p1.b);
-        return Math.sqrt(Math.pow(f, g) + Math.pow(s, g));
-    }
-
 }
