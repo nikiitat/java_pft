@@ -8,6 +8,8 @@ public class MyFirstProgram {
     static int[] numbers = {10, 6, 15, 4, 8, 20, 2};
 
     public static void main(String[] args) {
+        short i = 32767;
+        System.out.println(i);
         System.out.println("Hello, world!");
         System.out.println(String
                 .format("Let's find the sum of 2 numbers from a given set %s that is closest to %s", Arrays.toString(numbers), a));
@@ -22,6 +24,7 @@ public class MyFirstProgram {
             for (int j = 1; j < numbers.length; j++) {
                 ArrayList<Integer> row = new ArrayList<Integer>(Arrays
                         .asList(numbers[i] + numbers[j], numbers[i], numbers[j]));
+                System.out.println(row);
                 matrix.add(row);
             }
         }

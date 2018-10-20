@@ -5,7 +5,7 @@
         <classes>
             <!--<class name="stqa.pft.addressbook.tests.GroupCreationTests" />-->
             <class name="stqa.pft.addressbook.tests.GroupModificationTests" />
-            <class name="stqa.pft.addressbook.tests.ContactModificationTests" />
+            <!--<class name="stqa.pft.addressbook.tests.ContactModificationTests" />-->
             <!--<class name="stqa.pft.addressbook.tests.GroupDeletionTests" />-->
         </classes>
     </test>
